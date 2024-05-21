@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 

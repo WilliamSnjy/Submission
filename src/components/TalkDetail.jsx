@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils';
 
 function ThreadDetail({
-  id, title, body, createdAt, owner,
+  title, body, createdAt, owner,
 }) {
   return (
     <section className="talk-detail">

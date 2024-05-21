@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useSelector, useDispatch } from 'react-redux';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import { asyncAddThread, asyncToogleLikeThread } from '../states/talks/action';
@@ -17,7 +16,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onAddThread = (title, body) => {
+  const onAddThread = ({ title, body }) => {
     dispatch(asyncAddThread({ title, body }));
     navigate('/');
   };

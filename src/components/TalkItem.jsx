@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { postedAt } from '../utils';
 
 function ThreadItem({
-  id, title, body, createdAt, threadOwner, authUser,
+  id, title, body, createdAt, threadOwner,
 }) {
   const navigate = useNavigate();
 
@@ -61,7 +60,6 @@ const threadItemShape = {
 
 ThreadItem.propTypes = {
   ...threadItemShape,
-  authUser: PropTypes.string.isRequired,
 };
 
 export { threadItemShape };
