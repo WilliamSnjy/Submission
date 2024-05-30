@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { postedAt } from '../utils';
 
 function ThreadItem({
-  id, title, body, createdAt, threadOwner,
+  id, title, body, createdAt, threadOwner, totalComments
 }) {
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ function ThreadItem({
         <article>
           <p className="talk-item__text">{title}</p>
           <p className="talk-item__text">{body}</p>
+          <p className="talk-item__text">Comments: {totalComments}</p> {/* Tampilkan jumlah komentar */}
         </article>
       </div>
     </div>
@@ -56,12 +57,13 @@ const threadItemShape = {
   createdAt: PropTypes.string.isRequired,
   authUser: PropTypes.string.isRequired,
   threadOwner: PropTypes.shape(userShape).isRequired,
+  totalComments: PropTypes.number.isRequired,
 };
 
 ThreadItem.propTypes = {
   ...threadItemShape,
 };
 
-export { threadItemShape };
+export { userShape,threadItemShape };
 
 export default ThreadItem;

@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ThreadDetail from '../components/TalkDetail';
 import ThreadItem from '../components/TalkItem';
-import ThreadReplyInput from '../components/TalkReplyInput';
-import { asyncReceiveThreadDetail, asyncToogleLikeThreadDetail } from '../states/talkDetail/action';
-import { asyncAddThread } from '../states/talks/action';
+import { asyncReceiveThreadDetail, asyncToogleLikeThreadDetail, asyncCreateComment } from '../states/talkDetail/action';
+import CommentInput from '../components/CommentInput';
+import CommentsList from '../components/CommenstList';
 
 function DetailPage() {
   const { threadId } = useParams();
@@ -23,8 +23,8 @@ function DetailPage() {
     dispatch(asyncToogleLikeThreadDetail());
   };
 
-  const onReplyThread = (body) => {
-    dispatch(asyncAddThread({ body, replyTo: threadId }));
+  const onReplyThread = (content) => {
+    dispatch(asyncCreateComment({ content }));
   };
 
   if (!threadDetail) {
@@ -42,7 +42,8 @@ function DetailPage() {
         )
       }
       <ThreadDetail {...threadDetail} authUser={authUser.id} likeTalk={onLikeThread} />
-      <ThreadReplyInput replyTalk={onReplyThread} />
+      <CommentInput addComment={onReplyThread} />
+      <CommentsList comments={threadDetail.comments}/>
     </section>
   );
 }

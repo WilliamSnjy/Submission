@@ -1,7 +1,7 @@
 module.exports = {
     root: true,
     env: {
-        browser: true, es2020: true
+        browser: true, es2020: true, 'cypress/globalsnp': true,
     },
     extends: ['airbnb', 'prettier', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended'],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -11,7 +11,7 @@ module.exports = {
             version: '18.3',
         },
     },
-    plugins: ['react-refresh', 'prettier'],
+    plugins: ['react-refresh', 'prettier', 'cypress'],
     rules: {
         'react/jsx-no-target-blank': 'off',
         'react/forbid-prop-type': 'off',
@@ -31,5 +31,7 @@ module.exports = {
         'no-alert': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react-refresh/only-export-components': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'import/order': 'off',
     },
 };

@@ -5,6 +5,7 @@ const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
   TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
+  CREATE_COMMENT: 'CREATE_COMMENT',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -58,6 +59,32 @@ function asyncToogleLikeThreadDetail() {
   };
 }
 
+function createCommentActionCreator(comment) {
+  return {
+    type: ActionType.CREATE_COMMENT,
+    payload: {
+      comment,
+    },
+  };
+}
+
+function asyncCreateComment({ content }) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+    const { threadDetail } = getState();
+    try {
+      const comment = await api.createComment({
+        content,
+        threadId: threadDetail.id,
+      });
+      dispatch(createCommentActionCreator(comment));
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
+
 export {
   ActionType,
   receiveThreadDetailActionCreator,
@@ -65,4 +92,5 @@ export {
   toggleLikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
   asyncToogleLikeThreadDetail,
+  asyncCreateComment
 };

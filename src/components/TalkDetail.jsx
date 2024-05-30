@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils';
 
+
 function ThreadDetail({
   title, body, createdAt, owner,
 }) {
